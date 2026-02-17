@@ -35,7 +35,7 @@ const GENERAL_PREFIX: &str = "/org/relm4/icons";
 /// Parse a filename into icon name.
 /// - Strips `.svg`
 pub fn path_to_icon_alias(path: impl AsRef<Path>) -> Option<String> {
-    match path.as_ref().to_str() {
+    match path.as_ref().file_name().map(|name| name.to_str()).flatten() {
         Some(path) => {
             if path.ends_with(".svg") {
                 println!("{path}");
