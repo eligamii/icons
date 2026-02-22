@@ -82,7 +82,7 @@ pub fn bundle_icons<P, I, S>(
             if let Some(icon) = path_to_icon_alias(entry.path()) {
                 if icons
                     .insert(
-                        icon.replace('/', "-").replace('\\', "-").clone(),
+                        icon.replace(|c: char| !c.is_alphanumeric() && c != '-', "-").clone(),
                         IconData {
                             path: entry.path().to_path_buf(),
                             is_shipped: false,
